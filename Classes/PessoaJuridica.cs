@@ -9,6 +9,8 @@ namespace Cadastro_Pessoa_FS1.Classes
     public string? cnpj { get; set; }
     public string? razaoSocial { get; set; }
 
+    public string caminho { get; private set; } = "Database/PessoaJuridica.csv";
+
 
 
 
@@ -18,8 +20,24 @@ namespace Cadastro_Pessoa_FS1.Classes
 
     public override float PagarImposto(float rendimento)
     {
-      throw new NotImplementedException();
+      if (rendimento <= 3000)
+      {
+        return rendimento * 0.03f;
+      }
+      else if (rendimento > 3000 && rendimento <= 6000)
+      {
+        return rendimento * 0.05f;
+      }
+      else if (rendimento > 60000 && rendimento < 10000)
+      {
+        return rendimento * 0.07f;
+      }
+      else
+      {
+        return rendimento * 0.09f;
+      }
     }
+
     //XX.XXX.XXX/0001-XX - XXXXXXXX0001XX
     public bool ValidarCnpj(string cnpj)
     {
@@ -41,6 +59,30 @@ namespace Cadastro_Pessoa_FS1.Classes
         }
       }
       return false;
+    }
+    public void Inserir(PessoaJuridica pj)
+    {
+      VerificarPastaArquivo(caminho);
+
+      string[] pjString = { $"{pj.nome},{pj.cnpj},{pj.razaoSocial}" };
+
+      File.AppendAllLines(caminho, pjString);
+    }
+
+    public List<PessoaJuridica> ler()
+    {
+      List<PessoaJuridica> ListaPj = new List<PessoaJuridica>();
+      string[] linhas = File.ReadAllLines(caminho);
+      foreach (string cadaLinha in linhas)
+      {
+        string[] atributos = cadaLinha.Split(",");
+        PessoaJuridica cadaPj = new PessoaJuridica();
+        cadaPj.nome = atributos[0];
+        cadaPj.cnpj = atributos[1];
+        cadaPj.razaoSocial = atributos[2];
+        ListaPj.Add(cadaPj);
+      }
+      return ListaPj;
     }
   }
 }
