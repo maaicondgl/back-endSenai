@@ -23,7 +23,7 @@ Clone o projeto com o comando abaixo:
   # Clone o repositório
   ❯ git clone https://github.com/maaicondgl/back-endSenai.git
 
-	# Entre no diretório
+	# Entre no diretório: https://github.com/maaicondgl/back-endSenai
   ❯ cd senai-uc12-sa2
 
 	# Execute o projeto
