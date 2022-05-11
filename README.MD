@@ -24,7 +24,8 @@ Clone o projeto com o comando abaixo:
   ❯ git clone https://github.com/maaicondgl/back-endSenai.git
 
 	# Entre no diretório: https://github.com/maaicondgl/back-endSenai
-  ❯ cd senai-uc12-sa2
+  ❯ cd back-endSenai
+
 
 	# Execute o projeto
   ❯ dotnet run
